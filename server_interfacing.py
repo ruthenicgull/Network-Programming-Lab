@@ -3,7 +3,7 @@ port = 5000
 bufferSize = 1024
 
 serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM )
-serverSocket.bind(('192.168.137.42', port))
+serverSocket.bind(('192.168.137.68', port))
 
 print (f"Server listening on port {port}\n")
 

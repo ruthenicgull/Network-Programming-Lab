@@ -1,13 +1,13 @@
-import socket
-c = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-
-server_ip = "192.168.137.42"
-server_port = 5000
-
+from socket import socket, AF_INET, SOCK_DGRAM
+SERVER_IP = '192.168.137.1'
+PORT_NUMBER = 5000
+SIZE = 1024
+print("Test client sending packets to IP {0}, via port {1}\n".format(SERVER_IP, PORT_NUMBER))
+mySocket = socket(AF_INET, SOCK_DGRAM)
+mySocket.connect((SERVER_IP, PORT_NUMBER))
 while True:
-    msg = input("Enter the message: ")
-    c.sendto(msg.encode(),(server_ip, server_port))
-    rec_data,rec_address = c.recvfrom(1024)
-    print("Message from server: ",rec_data.decode())
-
-c.close()
+    msgToServer = input('Enter message here: ')
+    mySocket.send(msgToServer.encode())
+    msgFromServer = mySocket.recv(SIZE)
+    print(f"Message from Server: {msgFromServer.decode()}")
+    mySocket.close()
