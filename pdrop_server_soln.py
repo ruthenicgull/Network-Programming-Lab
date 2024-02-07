@@ -1,7 +1,6 @@
 import socket
 import random
 
-# Server configuration
 server_ip = '127.0.0.1'
 server_port = 12345
 
@@ -19,7 +18,7 @@ while True:
         print("Packet dropped!")
         continue
 
-    print(f"Received message from {client_address}: {data.decode('utf-8')}")
+    print(f"Received message from client: {data.decode('utf-8')}")
 
     # Send acknowledgment back to the client
     acknowledgment = "Message received successfully"

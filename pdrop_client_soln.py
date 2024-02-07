@@ -2,7 +2,6 @@ import socket
 import random
 import time
 
-# Client configuration
 server_ip = '127.0.0.1'
 server_port = 12345
 max_attempts = 5
@@ -18,7 +17,7 @@ for message in messages:
     while attempts < max_attempts:
         # Encode and send the message
         client_socket.sendto(message.encode('utf-8'), (server_ip, server_port))
-        print(f"Sent message to {server_ip}:{server_port}: {message}")
+        print(f"Sending message to server: {message}")
 
         try:
             # Set a timeout for receiving the acknowledgment
@@ -28,7 +27,7 @@ for message in messages:
             data, server_address = client_socket.recvfrom(1024)
             
             # If acknowledgment received, break the loop
-            print(f"Acknowledgment received from {server_address}")
+            print(f"Acknowledgment received from server")
             break
         except socket.timeout:
             # Increment attempts and perform exponential backoff
